@@ -1,12 +1,49 @@
-import Layout from '../components/Layout'
+import { Component } from 'react'
 
-const Index = (props) => (
-  <Layout>
-    <div>
-      <h1>Here we are FuckPrize</h1>
-    </div>
-  </Layout>
-)
+import Layout from '../components/Layout'
+import UrlForm from '../components/UrlForm'
+import Url from '../components/Url'
+
+class Index extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      url: '',
+      baseUrl: '',
+    }
+
+    this.urlGenerated = this.urlGenerated.bind(this)
+    this.updateUrl = this.updateUrl.bind(this)
+  }
+
+  urlGenerated(url) {
+    this.setState({ url: url })
+    this.setState({ baseUrl: '' })
+  }
+
+  updateUrl(url) {
+    this.setState({ baseUrl: url })
+  }
+
+  render() {
+    return(
+      <Layout>
+        <div>
+          <h1>Here we are FuckURL</h1>
+          <UrlForm
+            urlGenerated={this.urlGenerated}
+            updateUrl={this.updateUrl}
+            baseUrl={this.state.baseUrl}
+          />
+          {this.state.url &&
+          <Url
+            url={this.state.url}
+          />}
+        </div>
+      </Layout>
+    )
+  }
+}
 
 export default Index
-
