@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next -p 4444",
     "build": "next build",
-    "start": "next start -p 4444",
+    "start": "next start",
     "lint": "eslint ."
   },
   "author": "",
