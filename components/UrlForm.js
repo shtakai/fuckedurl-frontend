@@ -27,8 +27,8 @@ class UrlForm extends Component {
     }
 
     let url = this.state.url
-    let baseUrl = `http://localhost:3000/redirect`
-    fetch(`http://localhost:3000/api/v1/links/create`, {
+    let baseUrl = `https://fuckurl.herokuapp.com/redirect`
+    fetch(`https://fuckurl.herokuapp.com/api/v1/links/create`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
