@@ -14,7 +14,6 @@ class UrlForm extends Component {
     this.handleCreateUrl = this.handleCreateUrl.bind(this)
     this.updateUrl = this.updateUrl.bind(this)
     this.urlGenerated = this.urlGenerated.bind(this)
-
   }
 
   urlGenerated(url) {
@@ -22,16 +21,13 @@ class UrlForm extends Component {
   }
 
   handleCreateUrl(e) {
-    console.log(`-----------`)
-    console.log(`urlGenerated:${this.state.urlGenerated}`)
-    console.log(`-----------`)
-    console.log('handleCreateUrl')
-    console.log(this.state.url)
     let isValid = isUri(this.state.url)
+    if (!isValid) {
+      return
+    }
+
     let url = this.state.url
-    let fullUrl = new Url(window.location.href)
-    let baseUrl = `${fullUrl.protocol}//${fullUrl.host}/r/`
-    console.log(`${url} FUCKED URL IS VALID?: ${isValid}`)
+    let baseUrl = `http://localhost:3000/redirect`
     fetch(`http://localhost:3000/api/v1/links/create`, {
       method: 'post',
       headers: {
@@ -44,8 +40,7 @@ class UrlForm extends Component {
       })
       .then( r => r.json() )
       .then( data => {
-        console.log(data)
-        let redirectUrl = `${baseUrl}${data.short_id}`
+        let redirectUrl = `${baseUrl}/${data.short_id}`
         console.log(`URL has been shortened. => ${redirectUrl}`)
         this.urlGenerated(redirectUrl)
       })
@@ -53,8 +48,8 @@ class UrlForm extends Component {
 
   updateUrl(e) {
     this.state.url = e.target.value
+    this.props.updateUrl(this.state.url)
   }
-
 
   render() {
     return(
@@ -66,6 +61,7 @@ class UrlForm extends Component {
             id="url"
             placeholder="Enter URL you want to en-short"
             onChange={this.updateUrl}
+            value={this.props.baseUrl}
           />
         </div>
         <button
@@ -79,5 +75,3 @@ class UrlForm extends Component {
 }
 
 export default UrlForm
-
-

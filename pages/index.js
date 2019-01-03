@@ -10,15 +10,20 @@ class Index extends Component {
 
     this.state = {
       url: '',
+      baseUrl: '',
     }
 
     this.urlGenerated = this.urlGenerated.bind(this)
+    this.updateUrl = this.updateUrl.bind(this)
   }
 
   urlGenerated(url) {
-    console.log('emit fuck')
-    console.log(url)
     this.setState({ url: url })
+    this.setState({ baseUrl: '' })
+  }
+
+  updateUrl(url) {
+    this.setState({ baseUrl: url })
   }
 
   render() {
@@ -26,16 +31,19 @@ class Index extends Component {
       <Layout>
         <div>
           <h1>Here we are FuckURL</h1>
-          <UrlForm urlGenerated={this.urlGenerated}/>
-          {this.state.url && <Url url={this.state.url}/>}
+          <UrlForm
+            urlGenerated={this.urlGenerated}
+            updateUrl={this.updateUrl}
+            baseUrl={this.state.baseUrl}
+          />
+          {this.state.url &&
+          <Url
+            url={this.state.url}
+          />}
         </div>
       </Layout>
     )
   }
 }
 
-// const Index = (props) => (
-// )
-
 export default Index
-
