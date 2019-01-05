@@ -3,27 +3,18 @@ import { Component } from 'react'
 import Layout from '../components/Layout'
 import UrlForm from '../components/UrlForm'
 import Url from '../components/Url'
+// import Timer from '../components/Timer'
+// import AppStore from '../stores/AppStore';
+import UrlStore from '../stores/UrlStore';
+import DevTools from 'mobx-react-devtools'
+import { observer } from 'mobx-react'
 
+@observer
 class Index extends Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      url: '',
-      baseUrl: '',
-    }
-
-    this.urlGenerated = this.urlGenerated.bind(this)
-    this.updateUrl = this.updateUrl.bind(this)
-  }
-
-  urlGenerated(url) {
-    this.setState({ url: url })
-    this.setState({ baseUrl: '' })
-  }
-
-  updateUrl(url) {
-    this.setState({ baseUrl: url })
+    this.urlStore = new UrlStore()
   }
 
   render() {
@@ -32,15 +23,15 @@ class Index extends Component {
         <div>
           <h1>Here we are FuckURL</h1>
           <UrlForm
-            urlGenerated={this.urlGenerated}
-            updateUrl={this.updateUrl}
-            baseUrl={this.state.baseUrl}
+            urlStore={this.urlStore}
           />
-          {this.state.url &&
-          <Url
-            url={this.state.url}
-          />}
+          {this.urlStore.urlGenerated &&
+            <Url
+              urlStore={this.urlStore}
+            />
+          }
         </div>
+        <DevTools/>
       </Layout>
     )
   }
