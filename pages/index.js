@@ -4,6 +4,14 @@ import Layout from '../components/Layout'
 import UrlForm from '../components/UrlForm'
 import Url from '../components/Url'
 
+import { observer } from 'mobx-react'
+import AppStore from '../stores/AppStore';
+import DevTools from 'mobx-react-devtools'
+
+const TimerView = observer(({ appStore }) => (
+  <button onClick={appStore.reset}>Second passed: {appStore.timer}</button>
+ ))
+
 class Index extends Component {
   constructor(props){
     super(props)
@@ -41,6 +49,8 @@ class Index extends Component {
             url={this.state.url}
           />}
         </div>
+        <TimerView appStore={new AppStore()}/>
+        <DevTools/>
       </Layout>
     )
   }
