@@ -1,5 +1,5 @@
 # FUCKURL Frontend
-https://nextfuckurl-nrrsvwhbjl.now.sh/
+https://nextfuckurl-hkcayzrtwf.now.sh/
 
 ## Introduction
 
