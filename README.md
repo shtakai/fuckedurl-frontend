@@ -12,3 +12,5 @@ https://nextfuckurl-hkcayzrtwf.now.sh/
 ## Installation
 
 > It sucks
+
+test
