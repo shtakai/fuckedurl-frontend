@@ -16,7 +16,7 @@
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
     "mobx-react-devtools": "^6.0.3",
-    "next": "^7.0.2",
+    "next": "^13.1.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "url-parse": "^1.4.4",
